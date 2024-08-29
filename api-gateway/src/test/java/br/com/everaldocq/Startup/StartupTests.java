@@ -1,10 +1,10 @@
-package br.com.everaldocq.api_gateway;
+package br.com.everaldocq.Startup;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiGatewayApplicationTests {
+class StartupTests {
 
 	@Test
 	void contextLoads() {
