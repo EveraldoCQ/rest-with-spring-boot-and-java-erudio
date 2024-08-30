@@ -1,4 +1,4 @@
-package br.com.everaldocq.Startup;
+package br.com.everaldocq.startup;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
