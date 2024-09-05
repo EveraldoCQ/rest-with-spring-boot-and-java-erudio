@@ -28,7 +28,7 @@ public class PersonServices {
 
     public Person findById(String id) {
 
-        logger.info("Finding one person!");
+        logger.info("Encontrando uma pessoa!");
 
         Person person = new Person();
         person.setId(counter.incrementAndGet());
@@ -49,6 +49,11 @@ public class PersonServices {
 
         logger.info("Atualizando uma pessoa!");
         return person;
+    }
+
+    public void delete(String id) {
+
+        logger.info("Deletando uma pessoa!");
     }
 
     private Person mockPerson(int i) {
