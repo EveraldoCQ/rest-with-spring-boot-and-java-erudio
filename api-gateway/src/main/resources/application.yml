@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: api-gateway
   datasource:
     dbcp2:
       driver-class-name: com.mysql.cj.jdbc.Driver
