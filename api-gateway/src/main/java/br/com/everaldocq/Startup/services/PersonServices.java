@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.everaldocq.startup.data.vo.v1.PersonVO;
 import br.com.everaldocq.startup.exceptions.ResourceNotFoundException;
-import br.com.everaldocq.startup.model.Person;
 import br.com.everaldocq.startup.repositories.PersonRepository;;
 
 @Service
@@ -18,14 +18,14 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
 
         logger.info("Finding all people!");
         
         return repository.findAll();
     }
 
-    public Person findById(Long id) {
+    public PersonVO findById(Long id) {
 
         logger.info("Encontrando uma pessoa!");
 
@@ -33,13 +33,13 @@ public class PersonServices {
             .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));
     }
 
-    public Person create(Person person) {
+    public PersonVO create(PersonVO person) {
 
         logger.info("Criando uma pessoa!");
         return repository.save(person);
     }
 
-    public Person update(Person person) {
+    public PersonVO update(PersonVO person) {
 
         logger.info("Atualizando uma pessoa!");
 
