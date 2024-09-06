@@ -2,15 +2,14 @@ spring:
   application:
     name: api-gateway
   datasource:
-    dbcp2:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/rest_with_spring_everaldo?useTimezone=true&serverTimezone=UTC
-      username: root
-      password: TRTMySQL-01
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rest_with_spring_everaldo?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: TRTMySQL-01
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-      show-sql: false
+    show-sql: false
