@@ -43,13 +43,15 @@ public class PersonServices {
 
         logger.info("Atualizando uma pessoa!");
 
-        var entity = repository.findById(person.getId())
+        /*var entity = repository.findById(person.getId())
+            .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));*/
+        repository.findById(person.getId())
             .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));
         
-        entity.setFirstName(person.getFirstName());
+        /*entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());
+        entity.setGender(person.getGender());*/
 
         return repository.save(person);
         //return repository.save(entity);
