@@ -10,6 +10,7 @@ import br.com.everaldocq.startup.data.vo.v1.PersonVO;
 import br.com.everaldocq.startup.data.vo.v2.PersonVOV2;
 import br.com.everaldocq.startup.exceptions.ResourceNotFoundException;
 import br.com.everaldocq.startup.mapper.DozerMapper;
+import br.com.everaldocq.startup.mapper.custom.PersonMapper;
 import br.com.everaldocq.startup.model.Person;
 import br.com.everaldocq.startup.repositories.PersonRepository;;
 
@@ -20,6 +21,9 @@ public class PersonServices {
 
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    PersonMapper mapper;
 
     public List<PersonVO> findAll() {
 
@@ -49,8 +53,8 @@ public class PersonServices {
     public PersonVOV2 createV2(PersonVOV2 person) {
 
         logger.info("Criando uma pessoa com V2!");
-        var entity = DozerMapper.parseObject(person, Person.class);
-        var vo = DozerMapper.parseObject(repository.save(entity), PersonVOV2.class);
+        var entity = mapper.convertVOToEntity(person);
+        var vo = mapper.convertEntityToVO(repository.save(entity));
         return vo;
     }
 
