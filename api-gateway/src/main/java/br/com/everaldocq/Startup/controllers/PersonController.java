@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.everaldocq.startup.data.vo.v1.PersonVO;
+import br.com.everaldocq.startup.data.vo.v2.PersonVOV2;
 import br.com.everaldocq.startup.services.PersonServices;
 
 @RestController
