@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.everaldocq.startup.data.vo.v1.PersonVO;
 import br.com.everaldocq.startup.exceptions.ResourceNotFoundException;
+import br.com.everaldocq.startup.mapper.DozerMapper;
+import br.com.everaldocq.startup.model.Person;
 import br.com.everaldocq.startup.repositories.PersonRepository;;
 
 @Service
@@ -22,38 +24,45 @@ public class PersonServices {
 
         logger.info("Finding all people!");
         
-        return repository.findAll();
+        return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class) ;
     }
 
     public PersonVO findById(Long id) {
 
         logger.info("Encontrando uma pessoa!");
 
-        return repository.findById(id)
+        var entity = repository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));
+
+        return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO create(PersonVO person) {
 
         logger.info("Criando uma pessoa!");
-        return repository.save(person);
+        var entity = DozerMapper.parseObject(person, Person.class);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public PersonVO update(PersonVO person) {
 
         logger.info("Atualizando uma pessoa!");
 
-        /*var entity = repository.findById(person.getId())
-            .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));*/
-        repository.findById(person.getId())
+        var entity = repository.findById(person.getId())
             .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));
+        /*repository.findById(person.getId())
+            .orElseThrow(() -> new ResourceNotFoundException("Sem registros encontrados para essa ID!"));*/
         
-        /*entity.setFirstName(person.getFirstName());
+        entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());*/
+        entity.setGender(person.getGender());
 
-        return repository.save(person);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
+
+        //return repository.save(person);
         //return repository.save(entity);
     }
 
