@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer{
         // Via EXTENTION. http://localhost:8080/api/person/v1.xml DEPRECATED on SpringBoot 2.6
 
         // Via QUERY PARAM. http://localhost:8080/api/person/v1?mediaType=xml
-
+/*
         configurer.favorParameter(true)
         .parameterName("mediaType")
         .ignoreAcceptHeader(true)
@@ -24,16 +24,16 @@ public class WebConfig implements WebMvcConfigurer{
         .defaultContentType(MediaType.APPLICATION_JSON)
             .mediaType("json", MediaType.APPLICATION_JSON)
             .mediaType("xml", MediaType.APPLICATION_XML);
+*/
 
-            // Via QUERY PARAM. http://localhost:8080/api/person/v1?mediaType=xml
-    
-            configurer.favorParameter(true)
-                .parameterName("mediaType")
-                .ignoreAcceptHeader(true)
-                .useRegisteredExtensionsOnly(false)
-                .defaultContentType(MediaType.APPLICATION_JSON)
-                    .mediaType("json", MediaType.APPLICATION_JSON)
-                    .mediaType("xml", MediaType.APPLICATION_XML);
+        // Via HEADER PARAM. http://localhost:8080/api/person/v1
+
+        configurer.favorParameter(false)
+            .ignoreAcceptHeader(false)
+            .useRegisteredExtensionsOnly(false)
+            .defaultContentType(MediaType.APPLICATION_JSON)
+                .mediaType("json", MediaType.APPLICATION_JSON)
+                .mediaType("xml", MediaType.APPLICATION_XML);
     
     }
 
